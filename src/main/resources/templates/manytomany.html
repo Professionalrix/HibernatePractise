@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" th:href="@{/css/mycss.css}">
+    <title>Home Page</title>
+  </head>
+  <body>
+    <h1 class="text-center">Home Page</h1>
+    <div class="container">
+    
+    <form th:action ="@{/manytomany}" th:object=${student} method="post" >
+  			
+   			 	<div class="multiselect">
+    			<div class="selectBox" onclick="showCheckboxes1()">
+      				<select>
+        				<option>Courses List</option>
+      				</select>
+      			<div class="overSelect"></div>
+    			</div>
+    
+    			<div id="checkboxes1">
+      				<label th:each="course :${courseList}"  for="one"><input th:value="${course.id}" th:text="${course.courseName}" type="checkbox" id="courseId">
+        				</label>
+      
+    				</div>
+  				</div>	
+  				
+  				<div class="multiselect">
+    			<div class="selectBox" onclick="showCheckboxes()">
+    			  <select>
+      			  <option>Students List</option>
+     			 </select>
+    			  <div class="overSelect"></div>
+   				 </div>
+   				 <div id="checkboxes">
+   			     <label th:each="student :${studentList}"  for="one"><input th:value="${student.id}" th:text="${student.name}" type="checkbox" id="studentId">
+    		    </label>
+      
+    </div>
+  </div>
+        
+  				
+  			<div class="text-center"> 
+  			<button type="submit" class="btn btn-primary">Submit</button>
+ 		 <a th:href="@{/students} "  class="btn btn-warning">Go to Student List</a></div>
+ 		 
+	
+  	
+</form>
+    
+    
+    </div>
+   	
+    <script>
+    
+    var expanded = false;
+
+    function showCheckboxes() {
+      var checkboxes = document.getElementById("checkboxes");
+      if (!expanded) {
+        checkboxes.style.display = "block";
+        expanded = true;
+      } else {
+        checkboxes.style.display = "none";
+        expanded = false;
+      }
+    }
+    
+    var expanded1 = false;
+
+    function showCheckboxes1() {
+      var checkboxes1 = document.getElementById("checkboxes1");
+      if (!expanded) {
+        checkboxes1.style.display = "block";
+        expanded1 = true;
+      } else {
+        checkboxes1.style.display = "none";
+        expanded1 = false;
+      }
+    }
+    
+    
+    
+    </script>
+    
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  	
+  	
+  	
+  </body>
+</html>
